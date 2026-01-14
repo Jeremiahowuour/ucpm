@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Chapters | UCPM National Directory</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body>
+
+<div id="top-header" class="bg-navy"> 
+    <div class="container d-flex justify-content-between align-items-center py-2">
+        <div class="contact-info small text-white">
+            <i class="fas fa-phone-alt me-2"></i><a href="tel:+254700000000">+254 700 000 000</a> &nbsp; | &nbsp;
+            <i class="fas fa-map-marker-alt me-2"></i>National HQ, University Way, Nairobi &nbsp; | &nbsp;
+            <i class="fas fa-clock me-2"></i>Mon - Fri: 8:00 AM - 5:00 PM &nbsp; | &nbsp;
+            <i class="fas fa-globe me-2"></i><a href="#">www.ucpm.org</a> &nbsp; | &nbsp;
+            <i class="fas fa-envelope me-2"></i><a href="mailto:info@ucpm.org">info@ucpm.org</a>
+        </div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f me-2"></i></a>
+            <a href="#"><i class="fab fa-twitter me-2"></i></a>
+            <a href="#"><i class="fab fa-instagram me-2"></i></a>
+        </div>
+    </div> 
+</div> 
+
+<nav class="navbar navbar-expand-lg sticky-top bg-white">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <div class="logo-box me-3 d-flex align-items-center justify-content-center" style="background: var(--ucpm-navy); width: 50px; height: 50px; border-radius: 12px;">
+                <img src="./assets/imgs/ucpm-logo.png" alt="UCPM Logo" style="width: 800px; height: 80px;">
+            </div>
+            <div class="brand-text">
+                <span class="d-block fw-bold mb-0" style="color: var(--ucpm-navy); font-size: 1.6rem; line-height: 1;">UCPM</span>
+                <small class="text-muted text-uppercase fw-bold ls-2" style="font-size: 0.6rem;">National Prayer Movement</small>
+            </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link px-3 active" href="index.html">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle px-3" href="#" data-bs-toggle="dropdown">The Movement</a>
+                    <ul class="dropdown-menu border-0 shadow-lg p-3 mt-3">
+                        <li><a class="dropdown-item py-2 rounded" href="about.html">Our History</a></li>
+                        <li><a class="dropdown-item py-2 rounded" href="vision.html">Vision & Mission</a></li>
+                        <li><a class="dropdown-item py-2 rounded" href="leadership.html">Leadership Team</a></li>
+                        <li><a class="dropdown-item py-2 rounded" href="faith.html">Statement of Faith</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link px-3" href="institutions.html">Institutions</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="events.html">Events</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="resources.html">Resources</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="contact.html">Contact</a></li>
+                <li class="nav-item ms-lg-4">
+                    <a class="btn btn-warning fw-bold px-4 py-2 rounded-pill shadow-sm" href="membership.html">Join Movement</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="chapters-hero">
+    <div class="container">
+        <h6 class="text-warning text-uppercase ls-2 mb-3 fw-bold">National Presence</h6>
+        <h1 class="display-3 text-white">Our Campus Chapters</h1>
+        <p class="lead opacity-75 mx-auto mt-4" style="max-width: 800px;">
+            Connecting prayer altars in over 50 Universities and Colleges across 12 spiritual zones. Find your community today.
+        </p>
+    </div>
+</header>
+
+<div class="container">
+    <div class="search-container">
+        <form class="row g-3">
+            <div class="col-md-5">
+                <div class="input-group border rounded-pill overflow-hidden">
+                    <span class="input-group-text bg-white border-0 ps-4"><i class="fas fa-search text-muted"></i></span>
+                    <input type="text" class="form-control border-0 py-3" placeholder="Search by University Name...">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <select class="form-select border rounded-pill py-3 px-4">
+                    <option selected disabled>Filter by Region</option>
+                    <option>Nairobi Region</option>
+                    <option>Rift Valley Region</option>
+                    <option>Western Region</option>
+                    <option>Central Region</option>
+                    <option>Coast Region</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-navy w-100 py-3 fw-bold rounded-pill" style="background: var(--ucpm-navy); color: white;">Apply Filter</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-6">
+                <h2 class="display-6">Regional Hubs</h2>
+                <p class="text-muted">Explore our active chapters categorized by geographical clusters.</p>
+            </div>
+        </div>
+
+        <div class="accordion" id="regionalAccordion">
+            <div class="accordion-item shadow-sm">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#nairobi">
+                        <i class="fas fa-city me-3 text-gold"></i> Nairobi Central Hub (12 Chapters)
+                    </button>
+                </h2>
+                <div id="nairobi" class="accordion-collapse collapse show" data-bs-parent="#regionalAccordion">
+                    <div class="accordion-body p-4 bg-white">
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="campus-card">
+                                    <h6 class="fw-bold">University of Nairobi</h6>
+                                    <p class="small text-muted mb-2"><i class="fas fa-user-circle me-1"></i> Patron: Prof. Kamau</p>
+                                    <span class="badge bg-success-subtle text-success">Active Altar</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="campus-card">
+                                    <h6 class="fw-bold">Kenyatta University</h6>
+                                    <p class="small text-muted mb-2"><i class="fas fa-user-circle me-1"></i> Patron: Dr. Faith W.</p>
+                                    <span class="badge bg-success-subtle text-success">Active Altar</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="campus-card">
+                                    <h6 class="fw-bold">Strathmore University</h6>
+                                    <p class="small text-muted mb-2"><i class="fas fa-user-circle me-1"></i> Patron: Rev. Jude</p>
+                                    <span class="badge bg-success-subtle text-success">Active Altar</span>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item shadow-sm">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rift">
+                        <i class="fas fa-mountain me-3 text-gold"></i> Rift Valley Zone (08 Chapters)
+                    </button>
+                </h2>
+                <div id="rift" class="accordion-collapse collapse" data-bs-parent="#regionalAccordion">
+                    <div class="accordion-body p-4 bg-white">
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="campus-card">
+                                    <h6 class="fw-bold">Egerton University</h6>
+                                    <p class="small text-muted mb-2">Main Campus - Njoro</p>
+                                    <span class="badge bg-success-subtle text-success">Active Altar</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="campus-card">
+                                    <h6 class="fw-bold">Moi University</h6>
+                                    <p class="small text-muted mb-2">Main Campus - Eldoret</p>
+                                    <span class="badge bg-success-subtle text-success">Active Altar</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="campus-card">
+                                    <h6 class="fw-bold">Kabarak University</h6>
+                                    <p class="small text-muted mb-2">Private Charter</p>
+                                    <span class="badge bg-success-subtle text-success">Active Altar</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item shadow-sm">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#western">
+                        <i class="fas fa-leaf me-3 text-gold"></i> Western & Lake Region (15 Chapters)
+                    </button>
+                </h2>
+                <div id="western" class="accordion-collapse collapse" data-bs-parent="#regionalAccordion">
+                    <div class="accordion-body p-4 bg-white">
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="campus-card">
+                                    <h6 class="fw-bold">Maseno University</h6>
+                                    <p class="small text-muted mb-2">Kisumu County</p>
+                                    <span class="badge bg-success-subtle text-success">Active Altar</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="campus-card">
+                                    <h6 class="fw-bold">MMUST</h6>
+                                    <p class="small text-muted mb-2">Kakamega County</p>
+                                    <span class="badge bg-success-subtle text-success">Active Altar</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-6">What is a UCPM Chapter?</h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">We don't just register names; we establish spiritual standards. Every registered chapter must adhere to our "Altar Excellence" framework.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3">
+                <div class="p-4 bg-white rounded-4 border-top border-4 border-warning shadow-sm">
+                    <h5 class="fw-bold">1. Spiritual Covering</h5>
+                    <p class="small text-muted">A chapter must be officially recognized by the resident Christian Union (CU) and have at least one staff patron.</p>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="p-4 bg-white rounded-4 border-top border-4 border-warning shadow-sm">
+                    <h5 class="fw-bold">2. Prayer Rhythm</h5>
+                    <p class="small text-muted">A minimum of 10 hours of collective intercession per week, focusing on national and institutional issues.</p>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="p-4 bg-white rounded-4 border-top border-4 border-warning shadow-sm">
+                    <h5 class="fw-bold">3. Accountability</h5>
+                    <p class="small text-muted">Submission of monthly spiritual reports to the Regional Coordinator and the National Secretariat.</p>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="p-4 bg-white rounded-4 border-top border-4 border-warning shadow-sm">
+                    <h5 class="fw-bold">4. Kingdom Impact</h5>
+                    <p class="small text-muted">Active participation in campus ethics, mentorship programs, and Student Council integrity drives.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6">
+                <h2 class="display-6">Establish an Altar on Your Campus</h2>
+                <p>Is your institution missing from our directory? Follow these four steps to bring the UCPM fire to your university.</p>
+            </div>
+            <div class="col-lg-6 text-lg-end">
+                <a href="membership.html" class="btn btn-warning px-5 py-3 fw-bold rounded-pill shadow">Download Charter Kit</a>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <h6 class="fw-bold">Gather the Remnant</h6>
+                    <p class="small text-muted">Find at least 5 students sharing the same prayer burden for your campus.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <h6 class="fw-bold">CU Alignment</h6>
+                    <p class="small text-muted">Present the UCPM mandate to your local CU Executive Board for integration.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <h6 class="fw-bold">Regional Onboarding</h6>
+                    <p class="small text-muted">Contact your Regional Coordinator for an induction session on protocols.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="step-card">
+                    <div class="step-number">04</div>
+                    <h6 class="fw-bold">National Charter</h6>
+                    <p class="small text-muted">Receive your official Certificate of Registration from the National Secretariat.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer-main">
+    <div class="container pb-5">
+        <div class="row g-5">
+            <div class="col-lg-4">
+                <a class="navbar-brand d-flex align-items-center mb-4" href="#">
+                    <div class="logo-box me-3 d-flex align-items-center justify-content-center" style="background: white; width: 40px; height: 40px; border-radius: 8px;">
+                        <span style="color: var(--ucpm-navy); font-weight: 900; font-size: 1.1rem;">U</span>
+                    </div>
+                    <span class="text-white fw-bold h4 mb-0">UCPM</span>
+                </a>
+                <p class="small mb-4">Raising a generation of student leaders who lead through the power of intercession and biblical integrity across all institutions of higher learning in Kenya and beyond.</p>
+                <div class="d-flex gap-3">
+                    <a href="#" class="btn btn-outline-light btn-sm rounded-circle" style="width: 35px; height: 35px;"><i class="fab fa-facebook-f mt-1"></i></a>
+                    <a href="#" class="btn btn-outline-light btn-sm rounded-circle" style="width: 35px; height: 35px;"><i class="fab fa-twitter mt-1"></i></a>
+                    <a href="#" class="btn btn-outline-light btn-sm rounded-circle" style="width: 35px; height: 35px;"><i class="fab fa-instagram mt-1"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-4">
+                <h6 class="footer-heading">The Movement</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-3"><a href="about.html" class="text-decoration-none text-reset hover-gold">History</a></li>
+                    <li class="mb-3"><a href="vision.html" class="text-decoration-none text-reset hover-gold">Vision & Mission</a></li>
+                    <li class="mb-3"><a href="leadership.html" class="text-decoration-none text-reset hover-gold">National Leaders</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-2 col-md-4">
+                <h6 class="footer-heading">Engagement</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-3"><a href="institutions.html" class="text-decoration-none text-reset hover-gold">Campus Chapters</a></li>
+                    <li class="mb-3"><a href="events.html" class="text-decoration-none text-reset hover-gold">Prayer Rallies</a></li>
+                    <li class="mb-3"><a href="membership.html" class="text-decoration-none text-reset hover-gold">Join UCPM</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-4 col-md-4">
+                <h6 class="footer-heading">Central Secretariat</h6>
+                <div class="d-flex mb-3 small"><i class="fas fa-map-marker-alt me-3 text-gold"></i><span>National HQ, University Way, Nairobi, Kenya</span></div>
+                <div class="d-flex mb-3 small"><i class="fas fa-envelope me-3 text-gold"></i><span>info@ucpm-movement.org</span></div>
+                <div class="d-flex mb-3 small"><i class="fas fa-phone-alt me-3 text-gold"></i><span>+254 700 000 000</span></div>
+            </div>
+        </div>
+        <hr class="mt-5 mb-4 opacity-10 border-white">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="small mb-0 opacity-50">&copy; 2026 Universities and Colleges Christian Union Prayer Movement. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                <p class="small mb-0 opacity-50">United in Prayer, Excelling in Academy.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

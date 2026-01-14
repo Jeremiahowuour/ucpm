@@ -1,0 +1,383 @@
+:root {
+            --ucpm-navy: #0a192f;
+            --ucpm-navy-light: #112240;
+            --ucpm-gold: #f1c40f;
+            --ucpm-accent: #b21f1f;
+            --text-main: #334155;
+            --bg-light: #f8fafc;
+        }
+
+        body { font-family: 'Inter', sans-serif; color: var(--text-main); line-height: 1.8; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--ucpm-navy); font-weight: 700; }
+
+        /* --- Custom Professional Utilities --- */
+        .section-padding { padding: 100px 0; }
+        .bg-navy { background-color: var(--ucpm-navy); color: white; }
+        .text-gold { color: var(--ucpm-gold) !important; }
+        .hover-gold:hover { color: var(--ucpm-gold) !important; padding-left: 5px; transition: 0.3s; }
+        .ls-2 { letter-spacing: 2px; }
+
+        /* --- Navbar Styles --- */
+        .navbar { transition: all 0.4s; padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .nav-link { font-weight: 600; color: var(--ucpm-navy) !important; font-size: 0.95rem; }
+        .nav-link:hover { color: var(--ucpm-gold) !important; }
+
+        /* --- Hero Section --- */
+        .hero-complex {
+            position: relative;
+            background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.85)), 
+                        url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            padding-top: 80px;
+        }
+        .hero-complex h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); color: white; line-height: 1.1; margin-bottom: 25px; }
+        .hero-badge { background: rgba(241, 196, 15, 0.2); color: var(--ucpm-gold); padding: 8px 20px; border-radius: 50px; font-weight: 700; display: inline-block; margin-bottom: 20px; border: 1px solid var(--ucpm-gold); }
+
+        /* --- Stats Floating Bar --- */
+        .stats-floating {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            margin-top: -100px;
+            position: relative;
+            z-index: 20;
+            padding: 40px;
+        }
+        .stat-item h2 { font-size: 3rem; margin-bottom: 0; color: var(--ucpm-navy); font-family: 'Inter', sans-serif; }
+
+        /* --- Feature Cards --- */
+        .feature-box {
+            padding: 50px;
+            border-radius: 20px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(10, 25, 47, 0.08);
+            border-color: var(--ucpm-gold);
+        }
+        .icon-wrap {
+            width: 80px; height: 80px; background: var(--bg-light); 
+            border-radius: 15px; display: flex; align-items: center; 
+            justify-content: center; font-size: 2rem; color: var(--ucpm-navy);
+            margin-bottom: 30px;
+        }
+
+        /* --- National Network Map Area --- */
+        .network-section { background: var(--ucpm-navy-light); color: white; border-radius: 40px; padding: 60px; }
+
+        /* --- Testimonials --- */
+        .quote-card {
+            background: var(--bg-light);
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+            border-top: 5px solid var(--ucpm-gold);
+        }
+        .quote-icon { position: absolute; top: -20px; right: 40px; font-size: 3rem; color: var(--ucpm-gold); opacity: 0.3; }
+
+        /* --- Footer Styles --- */
+        .footer-main { background: var(--ucpm-navy); color: #94a3b8; padding: 100px 0 30px; }
+        .footer-heading { color: white; font-weight: 700; margin-bottom: 30px; font-family: 'Inter', sans-serif; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px; }
+        .footer-link { color: #94a3b8; text-decoration: none; }
+        .footer-link:hover { color: var(--ucpm-gold); text-decoration: none; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding: 20px 0; font-size: 0.9rem; }
+
+
+        /* ABOUT PAGE STYLES */
+        /* Hero Section */
+        .about-hero {
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)), 
+                        url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            color: white;
+            text-align: center;
+        }
+
+        /* Content Sections */
+        .section-padding { padding: 100px 0; }
+        .bg-navy { background-color: var(--ucpm-navy); color: white; }
+        
+        /* Timeline Component */
+        .timeline-container { position: relative; padding: 50px 0; }
+        .timeline-container::after { content: ''; position: absolute; width: 2px; background: #e2e8f0; top: 0; bottom: 0; left: 50%; margin-left: -1px; }
+        
+        .timeline-item { padding: 10px 40px; position: relative; width: 50%; }
+        .timeline-item::after { content: ''; position: absolute; width: 20px; height: 20px; right: -10px; background-color: white; border: 4px solid var(--ucpm-gold); top: 15px; border-radius: 50%; z-index: 1; }
+        .left { left: 0; text-align: right; }
+        .right { left: 50%; text-align: left; }
+        .right::after { left: -10px; }
+        
+        .timeline-content { padding: 20px 30px; background-color: white; position: relative; border-radius: 12px; shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; }
+
+        /* Value Cards */
+        .value-card {
+            border: none;
+            padding: 40px;
+            border-radius: 20px;
+            background: white;
+            transition: 0.4s;
+            height: 100%;
+            border-bottom: 5px solid transparent;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+        .value-card:hover { transform: translateY(-10px); border-bottom: 5px solid var(--ucpm-gold); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+        .value-icon { font-size: 2.5rem; color: var(--ucpm-gold); margin-bottom: 20px; }
+
+        /* Organizational Chart Style */
+        .org-box {
+            background: var(--ucpm-navy-light);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .org-box h5 { margin-bottom: 5px; font-weight: 700; }
+        .org-connector {
+            width: 2px;
+            height: 40px;
+            background: rgba(255,255,255,0.3);
+            margin: 0 auto;
+        }
+
+        /* VISION PAGE STYLES */
+        /* Hero: The Altar Background */
+        .vision-hero {
+            height: 90vh;
+            background: linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.9)), 
+                        url('https://images.unsplash.com/photo-1510531704581-5b2870972060?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .zeal-heading { font-family: 'Playfair Display', serif; color: white; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; }
+        .gold-underline { width: 80px; height: 4px; background: var(--ucpm-gold); margin: 20px auto; }
+
+        /* The Mandate Cards */
+        .mandate-overlap { margin-top: -120px; position: relative; z-index: 100; }
+        .mandate-card {
+            background: white;
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+            border: 1px solid rgba(0,0,0,0.05);
+            height: 100%;
+        }
+
+        /* Pillars of Zeal */
+        .pillar-section { padding: 100px 0; background-color: var(--soft-bg); }
+        .pillar-icon { 
+            width: 80px; height: 80px; 
+            background: var(--ucpm-navy); 
+            color: var(--ucpm-gold); 
+            border-radius: 20px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 2rem;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 20px rgba(10, 25, 47, 0.2);
+        }
+
+        /* Deep Dive Roadmap */
+        .roadmap-line {
+            position: relative;
+            padding-left: 50px;
+            border-left: 3px solid var(--ucpm-gold);
+        }
+        .roadmap-point {
+            position: relative;
+            margin-bottom: 60px;
+        }
+        .roadmap-point::after {
+            content: "";
+            position: absolute;
+            left: -61px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            background: var(--ucpm-navy);
+            border: 4px solid var(--ucpm-gold);
+            border-radius: 50%;
+        }
+
+        /* Call to Sacrifice */
+        .sacrificial-section {
+            padding: 120px 0;
+            color: white;
+            overflow: hidden;
+        }
+        .fire-bg {
+            position: absolute;
+            opacity: 0.1;
+            right: -100px;
+            top: -50px;
+            font-size: 20rem;
+            color: var(--fire-glow);
+        }
+        .fire-glow { color: #ff6f61; filter: drop-shadow(0 0 10px #ff6f61); }
+
+        /* LEADERSHIP PAGE STYLES */
+        /* Hero Section */
+        .leadership-hero {
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)), 
+                        url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            color: white;
+            text-align: center;
+        }
+
+        .section-padding { padding: 90px 0; }
+
+        /* Leader Card Design */
+        .leader-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.4s;
+            border: 1px solid #f1f5f9;
+            height: 100%;
+        }
+        .leader-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(10, 25, 47, 0.1);
+        }
+        .leader-img-box {
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+        }
+        .leader-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: 0.5s;
+        }
+        .leader-card:hover img {
+            filter: grayscale(0%);
+            scale: 1.05;
+        }
+        .leader-socials {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.4s;
+        }
+        .leader-card:hover .leader-socials {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .social-icon {
+            width: 40px; height: 40px; background: var(--ucpm-gold); color: var(--ucpm-navy);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            text-decoration: none; font-size: 1rem;
+        }
+
+        /* Patron Section */
+        .patron-card {
+            background: var(--ucpm-navy-light);
+            color: white;
+            padding: 40px;
+            border-radius: 25px;
+            border-bottom: 5px solid var(--ucpm-gold);
+        }
+
+        /* Organizational Diagram Style */
+        .org-chart-box {
+            background: #fff;
+            border: 2px solid var(--ucpm-navy);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+        }
+        .org-chart-box::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            width: 2px;
+            height: 20px;
+            background: var(--ucpm-navy);
+        }
+        /* Hero Section */
+        .chapters-hero {
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)), 
+                        url('https://images.unsplash.com/photo-1541339907198-e08756dedff3?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            color: white;
+            text-align: center;
+        }
+
+        .section-padding { padding: 80px 0; }
+
+        /* Search & Filter Bar */
+        .search-container {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Regional Accordion Tweak */
+        .accordion-item { border: none; margin-bottom: 15px; border-radius: 15px !important; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .accordion-button { background: white; font-weight: 700; color: var(--ucpm-navy); padding: 25px; }
+        .accordion-button:not(.collapsed) { background: var(--ucpm-navy); color: var(--ucpm-gold); }
+        .accordion-button::after { filter: grayscale(1) invert(0); }
+
+        /* Campus Card */
+        .campus-card {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid var(--ucpm-gold);
+            transition: 0.3s;
+            height: 100%;
+        }
+        .campus-card:hover { background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transform: scale(1.02); }
+
+        /* Step Card */
+        .step-card {
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            height: 100%;
+            position: relative;
+        }
+        .step-number {
+            width: 50px; height: 50px; background: var(--ucpm-gold); color: var(--ucpm-navy);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 900; font-size: 1.2rem; margin-bottom: 20px;
+        }

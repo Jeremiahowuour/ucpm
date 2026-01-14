@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources & Media | UCPM National Spiritual Arsenal</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ucpm-navy: #0a192f;
+            --ucpm-navy-light: #112240;
+            --ucpm-gold: #f1c40f;
+            --ucpm-accent: #b21f1f;
+            --text-main: #334155;
+            --bg-light: #f8fafc;
+        }
+
+        body { font-family: 'Inter', sans-serif; color: var(--text-main); line-height: 1.8; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--ucpm-navy); font-weight: 700; }
+
+        /* Navigation Active State */
+        .nav-link.active-page { color: var(--ucpm-gold) !important; border-bottom: 2px solid var(--ucpm-gold); }
+        .hover-gold:hover { color: var(--ucpm-gold) !important; padding-left: 5px; transition: 0.3s; }
+
+        /* Hero Section */
+        .resource-hero {
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)), 
+                        url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            color: white;
+            text-align: center;
+        }
+
+        .section-padding { padding: 90px 0; }
+
+        /* Resource Card Styling */
+        .resource-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(10, 25, 47, 0.1);
+            border-color: var(--ucpm-gold);
+        }
+        .resource-card i.type-icon {
+            font-size: 2.5rem;
+            color: var(--ucpm-navy);
+            opacity: 0.1;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .file-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        .badge-pdf { background: #fee2e2; color: #b91c1c; }
+        .badge-video { background: #dcfce7; color: #15803d; }
+        .badge-audio { background: #e0f2fe; color: #0369a1; }
+
+        /* Sidebar Navigation */
+        .resource-sidebar {
+            position: sticky;
+            top: 100px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--text-main);
+            text-decoration: none;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+        .sidebar-link:hover, .sidebar-link.active {
+            background: var(--ucpm-navy);
+            color: white !important;
+        }
+
+        /* Featured Guide Box */
+        .featured-guide {
+            background: var(--ucpm-navy-light);
+            border-radius: 30px;
+            padding: 50px;
+            color: white;
+            margin-bottom: 60px;
+        }
+
+        /* Footer Main */
+        .footer-main { background: var(--ucpm-navy); color: #94a3b8; padding: 100px 0 30px; }
+        .footer-heading { color: white; font-weight: 700; margin-bottom: 30px; font-family: 'Inter', sans-serif; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+<div id="top-header" class="bg-navy"> 
+    <div class="container d-flex justify-content-between align-items-center py-2">
+        <div class="contact-info small text-white">
+            <i class="fas fa-phone-alt me-2"></i><a href="tel:+254700000000">+254 700 000 000</a> &nbsp; | &nbsp;
+            <i class="fas fa-map-marker-alt me-2"></i>National HQ, University Way, Nairobi &nbsp; | &nbsp;
+            <i class="fas fa-clock me-2"></i>Mon - Fri: 8:00 AM - 5:00 PM &nbsp; | &nbsp;
+            <i class="fas fa-globe me-2"></i><a href="#">www.ucpm.org</a> &nbsp; | &nbsp;
+            <i class="fas fa-envelope me-2"></i><a href="mailto:info@ucpm.org">info@ucpm.org</a>
+        </div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f me-2"></i></a>
+            <a href="#"><i class="fab fa-twitter me-2"></i></a>
+            <a href="#"><i class="fab fa-instagram me-2"></i></a>
+        </div>
+    </div> 
+</div> 
+
+<nav class="navbar navbar-expand-lg sticky-top bg-white">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <div class="logo-box me-3 d-flex align-items-center justify-content-center" style="background: var(--ucpm-navy); width: 50px; height: 50px; border-radius: 12px;">
+                <img src="./assets/imgs/ucpm-logo.png" alt="UCPM Logo" style="width: 800px; height: 80px;">
+            </div>
+            <div class="brand-text">
+                <span class="d-block fw-bold mb-0" style="color: var(--ucpm-navy); font-size: 1.6rem; line-height: 1;">UCPM</span>
+                <small class="text-muted text-uppercase fw-bold ls-2" style="font-size: 0.6rem;">National Prayer Movement</small>
+            </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link px-3 active" href="index.html">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle px-3" href="#" data-bs-toggle="dropdown">The Movement</a>
+                    <ul class="dropdown-menu border-0 shadow-lg p-3 mt-3">
+                        <li><a class="dropdown-item py-2 rounded" href="about.html">Our History</a></li>
+                        <li><a class="dropdown-item py-2 rounded" href="vision.html">Vision & Mission</a></li>
+                        <li><a class="dropdown-item py-2 rounded" href="leadership.html">Leadership Team</a></li>
+                        <li><a class="dropdown-item py-2 rounded" href="faith.html">Statement of Faith</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link px-3" href="institutions.html">Institutions</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="events.html">Events</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="resources.html">Resources</a></li>
+                <li class="nav-item ms-lg-4">
+                    <a class="btn btn-warning fw-bold px-4 py-2 rounded-pill shadow-sm" href="membership.html">Join Movement</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="resource-hero">
+    <div class="container">
+        <h6 class="text-warning text-uppercase ls-2 mb-3 fw-bold">Spiritual Arsenal</h6>
+        <h1 class="display-3 text-white">Equipping the Saints</h1>
+        <p class="lead opacity-75 mx-auto mt-4" style="max-width: 800px;">
+            Access prayer manuals, leadership protocols, and audio archives designed to sharpen your spiritual authority on campus.
+        </p>
+    </div>
+</header>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-3">
+                <div class="resource-sidebar">
+                    <h6 class="fw-bold mb-4 text-uppercase small ls-1">Library Categories</h6>
+                    <a href="#prayer-guides" class="sidebar-link active"><i class="fas fa-book-open me-3"></i> Prayer Guides</a>
+                    <a href="#leadership" class="sidebar-link"><i class="fas fa-gavel me-3"></i> Leadership Docs</a>
+                    <a href="#audio" class="sidebar-link"><i class="fas fa-microphone me-3"></i> Sermon Audio</a>
+                    <a href="#branding" class="sidebar-link"><i class="fas fa-paint-brush me-3"></i> Media & Branding</a>
+                    <a href="#reports" class="sidebar-link"><i class="fas fa-file-alt me-3"></i> Chapter Reports</a>
+                    
+                    <div class="mt-5 p-4 bg-light rounded-4">
+                        <h6 class="fw-bold small mb-2">Need a Physical Copy?</h6>
+                        <p class="small text-muted">Contact the National Secretariat for printed manuals for your CU.</p>
+                        <a href="contact.html" class="btn btn-sm btn-outline-navy w-100 mt-2">Request Print</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                
+                <div class="featured-guide">
+                    <div class="row align-items-center">
+                        <div class="col-md-7">
+                            <span class="badge bg-warning text-dark mb-3">NEWEST RELEASE</span>
+                            <h2 class="text-white">The 2026 Altar Protocol</h2>
+                            <p class="opacity-75 mb-4">The definitive manual for establishing 24-hour prayer watches in secular university environments. Includes legal guidelines and spiritual frameworks.</p>
+                            <div class="d-flex gap-3">
+                                <a href="#" class="btn btn-warning fw-bold px-4 py-2 rounded-pill">Download PDF</a>
+                                <a href="#" class="btn btn-outline-light px-4 py-2 rounded-pill">Preview Guide</a>
+                            </div>
+                        </div>
+                        <div class="col-md-5 d-none d-md-block text-center">
+                            <i class="fas fa-shield-alt" style="font-size: 12rem; color: rgba(255,255,255,0.05); position: absolute; right: 20px; top: 20px;"></i>
+                            <img src="https://via.placeholder.com/250x350/0a192f/f1c40f?text=Protocol+2026" class="img-fluid rounded shadow-lg border border-warning">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="prayer-guides" class="mb-5 pt-4">
+                    <h3 class="mb-4">Prayer & Intercession Manuals</h3>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="resource-card">
+                                <i class="fas fa-hands-praying type-icon"></i>
+                                <span class="file-badge badge-pdf">PDF - 2.4 MB</span>
+                                <h5 class="fw-bold">The Intercessor's Mandate</h5>
+                                <p class="small text-muted">A 40-day intensive prayer guide for campus revival and institutional transformation.</p>
+                                <a href="#" class="btn btn-sm btn-outline-navy mt-3 rounded-pill">Download <i class="fas fa-download ms-2"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="resource-card">
+                                <i class="fas fa-clock type-icon"></i>
+                                <span class="file-badge badge-pdf">PDF - 1.8 MB</span>
+                                <h5 class="fw-bold">Watchmen Protocols</h5>
+                                <p class="small text-muted">Guidelines for setting up and maintaining the 3-hour watch shifts in institutional prayer rooms.</p>
+                                <a href="#" class="btn btn-sm btn-outline-navy mt-3 rounded-pill">Download <i class="fas fa-download ms-2"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="leadership" class="mb-5 pt-4 border-top">
+                    <h3 class="mb-4">Governance & Accountability</h3>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="resource-card">
+                                <i class="fas fa-balance-scale type-icon"></i>
+                                <span class="file-badge badge-pdf">PDF - 5.0 MB</span>
+                                <h5 class="fw-bold">UCPM National Constitution</h5>
+                                <p class="small text-muted">The legal and spiritual governing document for all registered campus chapters and regional hubs.</p>
+                                <a href="#" class="btn btn-sm btn-outline-navy mt-3 rounded-pill">Download <i class="fas fa-download ms-2"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="resource-card">
+                                <i class="fas fa-users-cog type-icon"></i>
+                                <span class="file-badge badge-pdf">PDF - 3.2 MB</span>
+                                <h5 class="fw-bold">Leadership Ethics 101</h5>
+                                <p class="small text-muted">A training module for Christian Union presidents on integrity, finance, and campus politics.</p>
+                                <a href="#" class="btn btn-sm btn-outline-navy mt-3 rounded-pill">Download <i class="fas fa-download ms-2"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="audio" class="mb-5 pt-4 border-top">
+                    <h3 class="mb-4">Sermon & Prophetic Audio</h3>
+                    <div class="row g-4">
+                        <div class="col-md-12">
+                            <div class="resource-card d-flex align-items-center gap-4">
+                                <div class="bg-navy p-3 rounded-circle text-gold">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <div>
+                                    <span class="file-badge badge-audio">MP3 - 45 MINS</span>
+                                    <h5 class="fw-bold mb-0">The Burden of the Altar (National Summit 2025)</h5>
+                                    <p class="small text-muted mb-0">Keynote address by the National Patron on the future of student movements.</p>
+                                </div>
+                                <a href="#" class="ms-auto btn btn-sm btn-navy text-white">Listen Now</a>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="resource-card d-flex align-items-center gap-4">
+                                <div class="bg-navy p-3 rounded-circle text-gold">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <div>
+                                    <span class="file-badge badge-audio">MP3 - 62 MINS</span>
+                                    <h5 class="fw-bold mb-0">Marketplace Apostleship</h5>
+                                    <p class="small text-muted mb-0">Equipping final year students for life after graduation.</p>
+                                </div>
+                                <a href="#" class="ms-auto btn btn-sm btn-navy text-white">Listen Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="reports" class="bg-light p-5 rounded-5 border-2 border-dashed border-navy border-opacity-10 text-center">
+                    <i class="fas fa-cloud-upload-alt mb-4 text-navy opacity-25" style="font-size: 4rem;"></i>
+                    <h4>Submit Your Chapter Report</h4>
+                    <p class="text-muted small mx-auto" style="max-width: 500px;">Are you a Prayer Secretary? Upload your monthly chapter prayer reports and testimonies here for the National Bulletin.</p>
+                    <div class="mt-4">
+                        <button class="btn btn-navy px-5 py-3 fw-bold rounded-pill" style="background: var(--ucpm-navy); color: white;">Open Submission Portal</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer-main">
+    <div class="container pb-5">
+        <div class="row g-5">
+            <div class="col-lg-4">
+                <a class="navbar-brand d-flex align-items-center mb-4" href="#">
+                    <div class="logo-box me-3 d-flex align-items-center justify-content-center" style="background: white; width: 40px; height: 40px; border-radius: 8px;">
+                        <span style="color: var(--ucpm-navy); font-weight: 900; font-size: 1.1rem;">U</span>
+                    </div>
+                    <span class="text-white fw-bold h4 mb-0">UCPM</span>
+                </a>
+                <p class="small mb-4">Raising a generation of student leaders who lead through the power of intercession and biblical integrity across all institutions of higher learning in Kenya and beyond.</p>
+                <div class="d-flex gap-3">
+                    <a href="#" class="btn btn-outline-light btn-sm rounded-circle" style="width: 35px; height: 35px;"><i class="fab fa-facebook-f mt-1"></i></a>
+                    <a href="#" class="btn btn-outline-light btn-sm rounded-circle" style="width: 35px; height: 35px;"><i class="fab fa-twitter mt-1"></i></a>
+                    <a href="#" class="btn btn-outline-light btn-sm rounded-circle" style="width: 35px; height: 35px;"><i class="fab fa-instagram mt-1"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-4">
+                <h6 class="footer-heading">The Movement</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-3"><a href="about.html" class="text-decoration-none text-reset hover-gold">History</a></li>
+                    <li class="mb-3"><a href="vision.html" class="text-decoration-none text-reset hover-gold">Vision & Mission</a></li>
+                    <li class="mb-3"><a href="leadership.html" class="text-decoration-none text-reset hover-gold">National Leaders</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-2 col-md-4">
+                <h6 class="footer-heading">Engagement</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-3"><a href="institutions.html" class="text-decoration-none text-reset hover-gold">Campus Chapters</a></li>
+                    <li class="mb-3"><a href="events.html" class="text-decoration-none text-reset hover-gold">Prayer Rallies</a></li>
+                    <li class="mb-3"><a href="membership.html" class="text-decoration-none text-reset hover-gold">Join UCPM</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-4 col-md-4">
+                <h6 class="footer-heading">Central Secretariat</h6>
+                <div class="d-flex mb-3 small"><i class="fas fa-map-marker-alt me-3 text-gold"></i><span>National HQ, University Way, Nairobi, Kenya</span></div>
+                <div class="d-flex mb-3 small"><i class="fas fa-envelope me-3 text-gold"></i><span>info@ucpm-movement.org</span></div>
+                <div class="d-flex mb-3 small"><i class="fas fa-phone-alt me-3 text-gold"></i><span>+254 700 000 000</span></div>
+                <div class="mt-4">
+                    <span class="small opacity-50">Resource Alerts:</span>
+                    <form class="mt-2 d-flex">
+                        <input type="email" class="form-control form-control-sm bg-navy border-white border-opacity-25 text-white" placeholder="Email">
+                        <button class="btn btn-warning btn-sm ms-2">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <hr class="mt-5 mb-4 opacity-10 border-white">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="small mb-0 opacity-50">&copy; 2026 Universities and Colleges Christian Union Prayer Movement. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                <p class="small mb-0 opacity-50">Empowering Students, Transforming Nations.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

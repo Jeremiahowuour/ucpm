@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Impact Report | UCPM 2026</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ucpm-navy: #0a192f;
+            --ucpm-gold: #f1c40f;
+            --ucpm-accent: #b21f1f;
+            --bg-light: #f8fafc;
+        }
+
+        body { font-family: 'Inter', sans-serif; color: #334155; overflow-x: hidden; }
+
+        /* Navbar Styling */
+        .navbar { box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 1rem 0; background: white !important; }
+        .nav-link { font-weight: 600; color: var(--ucpm-navy) !important; transition: 0.3s; }
+        .nav-link:hover { color: var(--ucpm-gold) !important; }
+        
+        /* Impact Hero */
+        .impact-hero {
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)), 
+                        url('https://images.unsplash.com/photo-1454165833767-027ffea9e77b?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            padding: 80px 0;
+            color: white;
+            text-align: center;
+        }
+
+        /* Metric Counter Cards */
+        .metric-card {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 20px;
+            border-bottom: 5px solid var(--ucpm-gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            text-align: center;
+        }
+        .metric-card:hover { transform: translateY(-10px); }
+        .metric-number { font-size: 3rem; font-weight: 800; color: var(--ucpm-navy); display: block; }
+        .metric-label { font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #64748b; }
+
+        /* Report Download Section */
+        .report-box {
+            background: var(--ucpm-navy);
+            color: white;
+            border-radius: 25px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* Success Story Circle */
+        .story-img {
+            width: 120px; height: 120px; border-radius: 50%; object-fit: cover;
+            border: 4px solid var(--ucpm-gold);
+        }
+
+        /* Footer Styling */
+        .footer-main { background: var(--ucpm-navy); color: #94a3b8; padding: 80px 0 30px; }
+        .footer-heading { color: white; font-weight: 700; margin-bottom: 1.5rem; }
+    </style>
+</head>
+<body>
+
+<div id="top-header" class="bg-navy"> 
+    <div class="container d-flex justify-content-between align-items-center py-2">
+        <div class="contact-info small text-white">
+            <i class="fas fa-phone-alt me-2"></i><a href="tel:+254700000000">+254 700 000 000</a> &nbsp; | &nbsp;
+            <i class="fas fa-map-marker-alt me-2"></i>National HQ, University Way, Nairobi &nbsp; | &nbsp;
+            <i class="fas fa-clock me-2"></i>Mon - Fri: 8:00 AM - 5:00 PM &nbsp; | &nbsp;
+            <i class="fas fa-globe me-2"></i><a href="#">www.ucpm.org</a> &nbsp; | &nbsp;
+            <i class="fas fa-envelope me-2"></i><a href="mailto:info@ucpm.org">info@ucpm.org</a>
+        </div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f me-2"></i></a>
+            <a href="#"><i class="fab fa-twitter me-2"></i></a>
+            <a href="#"><i class="fab fa-instagram me-2"></i></a>
+        </div>
+    </div> 
+</div> 
+
+<nav class="navbar navbar-expand-lg sticky-top bg-white">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <div class="logo-box me-3 d-flex align-items-center justify-content-center" style="background: var(--ucpm-navy); width: 50px; height: 50px; border-radius: 12px;">
+                <img src="./assets/imgs/ucpm-logo.png" alt="UCPM Logo" style="width: 800px; height: 80px;">
+            </div>
+            <div class="brand-text">
+                <span class="d-block fw-bold mb-0" style="color: var(--ucpm-navy); font-size: 1.6rem; line-height: 1;">UCPM</span>
+                <small class="text-muted text-uppercase fw-bold ls-2" style="font-size: 0.6rem;">National Prayer Movement</small>
+            </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link px-3 active" href="index.html">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle px-3" href="#" data-bs-toggle="dropdown">The Movement</a>
+                    <ul class="dropdown-menu border-0 shadow-lg p-3 mt-3">
+                        <li><a class="dropdown-item py-2 rounded" href="about.html">Our History</a></li>
+                        <li><a class="dropdown-item py-2 rounded" href="vision.html">Vision & Mission</a></li>
+                        <li><a class="dropdown-item py-2 rounded" href="leadership.html">Leadership Team</a></li>
+                        <li><a class="dropdown-item py-2 rounded" href="faith.html">Statement of Faith</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link px-3" href="institutions.html">Institutions</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="events.html">Events</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="resources.html">Resources</a></li>
+                <li class="nav-item ms-lg-4">
+                    <a class="btn btn-warning fw-bold px-4 py-2 rounded-pill shadow-sm" href="membership.html">Join Movement</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="impact-hero">
+    <div class="container px-4">
+        <h6 class="text-warning fw-bold text-uppercase ls-2">Accountability & Transparency</h6>
+        <h1 class="display-4 fw-bold mb-3">Our National Footprint</h1>
+        <p class="lead opacity-75 mx-auto" style="max-width: 700px;">Measuring the transformation of Kenyan campuses through prayer, mentorship, and ethical leadership development.</p>
+    </div>
+</header>
+
+<section class="py-5 bg-light">
+    <div class="container" style="margin-top: -80px; position: relative; z-index: 10;">
+        <div class="row g-4 justify-content-center">
+            <div class="col-6 col-md-3">
+                <div class="metric-card">
+                    <span class="metric-number">52</span>
+                    <span class="metric-label">Campuses</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="metric-card">
+                    <span class="metric-number">12k+</span>
+                    <span class="metric-label">Members</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="metric-card">
+                    <span class="metric-number">450</span>
+                    <span class="metric-label">Leaders Trained</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="metric-card">
+                    <span class="metric-number">10k</span>
+                    <span class="metric-label">Hours of Prayer</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container px-4">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-4">Growth Analysis 2024-2026</h2>
+                <p class="text-muted">Our movement has seen a 40% increase in regional hub participation. This data reflects the spiritual hunger and organizational maturity of student-led altars across the nation.</p>
+                
+            </div>
+            <div class="col-lg-6">
+                <div class="p-4 bg-white border rounded-4 shadow-sm text-center">
+                    <h6 class="fw-bold mb-4">Regional Distribution</h6>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container px-4">
+        <h2 class="text-center fw-bold mb-5">Stories of Change</h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="p-4 border rounded-4 bg-white h-100 shadow-sm d-flex flex-column flex-sm-row align-items-center gap-4">
+                    <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=200&q=80" class="story-img" alt="Student Testimony">
+                    <div>
+                        <p class="fst-italic small text-muted">"UCPM changed my perspective on campus politics. Through the Daniel Governance training, I served as a Student Leader with zero corruption allegations."</p>
+                        <h6 class="fw-bold mb-0">Angela Waweru</h6>
+                        <small class="text-gold">Former Chair, KU Chapter</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="p-4 border rounded-4 bg-white h-100 shadow-sm d-flex flex-column flex-sm-row align-items-center gap-4">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80" class="story-img" alt="Patron Testimony">
+                    <div>
+                        <p class="fst-italic small text-muted">"As a Patron, I've seen campus unrest decrease significantly in institutions where a UCPM Altar is active and thriving."</p>
+                        <h6 class="fw-bold mb-0">Dr. Silas Omotto</h6>
+                        <small class="text-gold">Academic Patron, Maseno</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container px-4">
+        <div class="report-box shadow">
+            <div class="d-flex align-items-center gap-3">
+                <i class="fas fa-file-pdf fa-3x text-warning"></i>
+                <div>
+                    <h4 class="fw-bold mb-0 text-white">2025 Annual Impact Report</h4>
+                    <p class="small opacity-75 mb-0">Download the full audit of our activities and finances.</p>
+                </div>
+            </div>
+            <a href="#" class="btn btn-warning px-4 py-2 fw-bold rounded-pill shadow-sm">Download PDF <i class="fas fa-download ms-2"></i></a>
+        </div>
+    </div>
+</section>
+
+<footer class="footer-main">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-4">
+                <div class="logo-box mb-4 d-inline-flex align-items-center justify-content-center" style="background: white; width: 50px; height: 50px; border-radius: 12px;">
+                    <span style="color: var(--ucpm-navy); font-weight: 900; font-size: 1.5rem;">U</span>
+                </div>
+                <h4 class="text-white fw-bold">UCPM Movement</h4>
+                <p class="small">Uniting institutions through intercession. Raising leaders of integrity and spiritual fire.</p>
+                <div class="d-flex gap-3 mt-4">
+                    <a href="#" class="text-white opacity-50"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white opacity-50"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white opacity-50"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h6 class="footer-heading">Quick Links</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-3"><a href="about.html" class="text-decoration-none text-reset">Our Vision</a></li>
+                    <li class="mb-3"><a href="events.html" class="text-decoration-none text-reset">Upcoming Rallies</a></li>
+                    <li class="mb-3"><a href="contact.html" class="text-decoration-none text-reset">Regional Directory</a></li>
+                    <li class="mb-3"><a href="giving.html" class="text-decoration-none text-reset">Partner With Us</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h6 class="footer-heading">National Secretariat</h6>
+                <p class="small mb-2"><i class="fas fa-map-marker-alt me-2 text-gold"></i> Nairobi Central Hub, Kenya</p>
+                <p class="small mb-2"><i class="fas fa-envelope me-2 text-gold"></i> info@ucpm-movement.org</p>
+                <p class="small"><i class="fas fa-phone-alt me-2 text-gold"></i> +254 700 000 000</p>
+            </div>
+        </div>
+        <hr class="mt-5 mb-4 border-secondary opacity-25">
+        <div class="text-center small opacity-50">
+            &copy; 2026 UCPM National Movement. Transparency in Spirit and Truth.
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
