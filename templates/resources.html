@@ -1,0 +1,294 @@
+{% extends 'base.html' %}
+
+{% block title %}Resources & Media | UCPM National Spiritual Arsenal{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Resource Specific Styles */
+    .resource-hero {
+        background: linear-gradient(rgba(11, 28, 61, 0.9), rgba(11, 28, 61, 0.85)), 
+                    url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1920&q=80');
+        background-size: cover;
+        background-position: center;
+        padding: 120px 0 80px;
+        color: white;
+        text-align: center;
+    }
+
+    .section-padding { padding: 90px 0; }
+
+    .resource-card {
+        background: white;
+        border-radius: 20px;
+        padding: 35px;
+        border: 1px solid #e2e8f0;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+    .resource-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 50px rgba(10, 25, 47, 0.1);
+        border-color: var(--ucpm-gold);
+    }
+    .resource-card i.type-icon {
+        font-size: 2.5rem;
+        color: var(--ucpm-navy);
+        opacity: 0.1;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    .file-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 6px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+    .badge-pdf { background: #fee2e2; color: #b91c1c; }
+    .badge-video { background: #dcfce7; color: #15803d; }
+    .badge-audio { background: #e0f2fe; color: #0369a1; }
+
+    .resource-sidebar {
+        position: sticky;
+        top: 100px;
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        border: 1px solid #e2e8f0;
+    }
+    .sidebar-link {
+        display: flex;
+        align-items: center;
+        padding: 12px 15px;
+        color: var(--text-main);
+        text-decoration: none;
+        border-radius: 10px;
+        margin-bottom: 5px;
+        transition: 0.3s;
+        font-weight: 600;
+    }
+    .sidebar-link:hover, .sidebar-link.active {
+        background: var(--ucpm-navy);
+        color: white !important;
+    }
+
+    .featured-guide {
+        background: var(--ucpm-navy-light);
+        border-radius: 30px;
+        padding: 50px;
+        color: white;
+        margin-bottom: 60px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<header class="resource-hero">
+    <div class="container">
+        <h6 class="text-warning text-uppercase ls-2 mb-3 fw-bold">Spiritual Arsenal</h6>
+        <h1 class="display-3 text-white">Equipping the Saints</h1>
+        <p class="lead opacity-75 mx-auto mt-4" style="max-width: 800px;">
+            Access prayer manuals, leadership protocols, and audio archives designed to sharpen your spiritual authority on campus.
+        </p>
+    </div>
+</header>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-3">
+                <div class="resource-sidebar">
+                    <h6 class="fw-bold mb-4 text-uppercase small ls-1">Library Categories</h6>
+                    <a href="#prayer-guides" class="sidebar-link active"><i class="fas fa-book-open me-3"></i> Prayer Guides</a>
+                    <a href="#leadership" class="sidebar-link"><i class="fas fa-gavel me-3"></i> Leadership Docs</a>
+                    <a href="#audio" class="sidebar-link"><i class="fas fa-microphone me-3"></i> Sermon Audio</a>
+                    <a href="#videos" class="sidebar-link"><i class="fas fa-video me-3"></i> Sermon Videos</a>
+                    <a href="#branding" class="sidebar-link"><i class="fas fa-paint-brush me-3"></i> Media & Branding</a>
+                    <a href="#reports" class="sidebar-link"><i class="fas fa-file-alt me-3"></i> Chapter Reports</a>
+                    
+                    <div class="mt-5 p-4 bg-light rounded-4">
+                        <h6 class="fw-bold small mb-2">Need a Physical Copy?</h6>
+                        <p class="small text-muted">Contact the National Secretariat for printed manuals for your CU.</p>
+                        <a href="{% url 'contact' %}" class="btn btn-sm btn-outline-dark w-100 mt-2">Request Print</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                
+                <!-- FEATURED GUIDE DYNAMIC BLOCK -->
+                {% if featured_resource %}
+                <div class="featured-guide">
+                    <div class="row align-items-center">
+                        <div class="col-md-7">
+                            <span class="badge bg-warning text-dark mb-3">NEWEST RELEASE</span>
+                            <h2 class="text-white">{{ featured_resource.title }}</h2>
+                            <p class="opacity-75 mb-4">{{ featured_resource.description }}</p>
+                            <div class="d-flex gap-3">
+                                {% if featured_resource.file %}
+                                <a href="{{ featured_resource.file.url }}" class="btn btn-warning fw-bold px-4 py-2 rounded-pill" download>Download File</a>
+                                <a href="{{ featured_resource.file.url }}" class="btn btn-outline-light px-4 py-2 rounded-pill" target="_blank">Preview Guide</a>
+                                {% elif featured_resource.embed_url %}
+                                <a href="{{ featured_resource.embed_url }}" class="btn btn-warning fw-bold px-4 py-2 rounded-pill" target="_blank">Watch Now</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-5 d-none d-md-block text-center position-relative">
+                            <i class="fas fa-shield-alt" style="font-size: 12rem; color: rgba(255,255,255,0.05); position: absolute; right: 20px; top: 20px;"></i>
+                            <div class="bg-white p-4 rounded shadow-lg border border-warning text-dark d-inline-block">
+                                <h4 class="fw-bold mb-1">{{ featured_resource.title|truncatechars:20 }}</h4>
+                                <p class="small text-muted mb-0">UCPM National Board</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- PRAYER & INTERCESSION MANUALS LOOP -->
+                <div id="prayer-guides" class="mb-5 pt-4">
+                    <h3 class="mb-4">Prayer & Intercession Manuals</h3>
+                    <div class="row g-4">
+                        {% for resource in prayer_guides %}
+                        <div class="col-md-6">
+                            <div class="resource-card">
+                                <i class="fas fa-hands-praying type-icon"></i>
+                                <span class="file-badge {% if resource.file_type == 'pdf' %}badge-pdf{% elif resource.file_type == 'audio' %}badge-audio{% else %}badge-video{% endif %}">
+                                    {{ resource.get_file_type_display }} {% if resource.file_size %}- {{ resource.file_size }}{% endif %}
+                                </span>
+                                <h5 class="fw-bold">{{ resource.title }}</h5>
+                                <p class="small text-muted">{{ resource.description }}</p>
+                                {% if resource.file %}
+                                <a href="{{ resource.file.url }}" class="btn btn-sm btn-outline-dark mt-3 rounded-pill" download>Download <i class="fas fa-download ms-2"></i></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="col-12">
+                            <p class="text-muted">No prayer guides uploaded yet.</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- GOVERNANCE & ACCOUNTABILITY LOOP -->
+                <div id="leadership" class="mb-5 pt-4 border-top">
+                    <h3 class="mb-4">Governance & Accountability</h3>
+                    <div class="row g-4">
+                        {% for resource in leadership_docs %}
+                        <div class="col-md-6">
+                            <div class="resource-card">
+                                <i class="fas fa-balance-scale type-icon"></i>
+                                <span class="file-badge badge-pdf">{{ resource.get_file_type_display }} {% if resource.file_size %}- {{ resource.file_size }}{% endif %}</span>
+                                <h5 class="fw-bold">{{ resource.title }}</h5>
+                                <p class="small text-muted">{{ resource.description }}</p>
+                                {% if resource.file %}
+                                <a href="{{ resource.file.url }}" class="btn btn-sm btn-outline-dark mt-3 rounded-pill" download>Download <i class="fas fa-download ms-2"></i></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="col-12">
+                            <p class="text-muted">No leadership documents uploaded yet.</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- SERMON & PROPHETIC AUDIO LOOP -->
+                <div id="audio" class="mb-5 pt-4 border-top">
+                    <h3 class="mb-4">Sermon & Prophetic Audio</h3>
+                    <div class="row g-4">
+                        {% for resource in audio_sermons %}
+                        <div class="col-md-12">
+                            <div class="resource-card d-flex align-items-center gap-4">
+                                <div class="bg-navy p-3 rounded-circle text-gold">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <div>
+                                    <span class="file-badge badge-audio">{{ resource.get_file_type_display }} {% if resource.file_size %}- {{ resource.file_size }}{% endif %}</span>
+                                    <h5 class="fw-bold mb-0">{{ resource.title }}</h5>
+                                    <p class="small text-muted mb-0">{{ resource.description }}</p>
+                                </div>
+                                {% if resource.file %}
+                                <a href="{{ resource.file.url }}" class="ms-auto btn btn-sm btn-navy text-white" target="_blank">Listen Now</a>
+                                {% elif resource.embed_url %}
+                                <a href="{{ resource.embed_url }}" class="ms-auto btn btn-sm btn-navy text-white" target="_blank">Stream Audio</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="col-md-12">
+                            <p class="text-muted">No audio files uploaded yet.</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- SERMON & PROPHETIC VIDEOS LOOP -->
+                <div id="videos" class="mb-5 pt-4 border-top">
+                    <h3 class="mb-4">Sermon & Prophetic Videos</h3>
+                    <div class="row g-4">
+                        {% for resource in video_resources %}
+                        <div class="col-md-6">
+                            <div class="resource-card">
+                                <span class="file-badge badge-video">VIDEO {% if resource.file_size %}- {{ resource.file_size }}{% endif %}</span>
+                                <h5 class="fw-bold mb-3">{{ resource.title }}</h5>
+                                
+                                {% if resource.embed_url %}
+                                <div class="ratio ratio-16x9 rounded-4 overflow-hidden mb-3 shadow-sm">
+                                    <iframe src="{{ resource.embed_url }}" title="{{ resource.title }}" allowfullscreen></iframe>
+                                </div>
+                                {% endif %}
+                                
+                                <p class="small text-muted mb-0">{{ resource.description }}</p>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="col-md-12">
+                            <p class="text-muted">No video resources added yet.</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- SUBMISSION PORTAL SECTION -->
+                <div id="reports" class="bg-light p-5 rounded-5 border border-dark border-opacity-10 text-center">
+                    <i class="fas fa-cloud-upload-alt mb-4 text-navy opacity-25" style="font-size: 4rem;"></i>
+                    <h4>Submit Your Chapter Report</h4>
+                    <p class="text-muted small mx-auto" style="max-width: 500px;">Are you a Prayer Secretary? Upload your monthly chapter prayer reports and testimonies here for the National Bulletin.</p>
+                    <div class="mt-4">
+                        <button type="button" class="btn btn-navy px-5 py-3 fw-bold rounded-pill text-white" style="background: var(--ucpm-navy);" data-bs-toggle="modal" data-bs-target="#reportModal">Open Submission Portal</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CHAPTER REPORT SUBMISSION MODAL -->
+<div class="modal fade" id="reportModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 p-4">
+            <div class="modal-header border-0">
+                <h5 class="fw-bold mb-0">Chapter Report Submission</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body text-start">
+                    {{ report_form.as_p }}
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="submit" class="btn btn-navy w-100 py-2 rounded-pill text-white" style="background: var(--ucpm-navy);">Submit Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

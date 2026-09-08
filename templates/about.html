@@ -1,0 +1,312 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title|default:"About UCPM | Our History, Mission & Spiritual Mandate" }}{% endblock %}
+
+{% block content %}
+<header class="about-hero">
+    <div class="container">
+        <h6 class="text-warning text-uppercase ls-2 mb-3 fw-bold">Deep Roots, Divine Mandate</h6>
+        <h1 class="display-3 text-white">Our Journey of Faith</h1>
+        <p class="lead opacity-75 mx-auto mt-4" style="max-width: 800px;">
+            The Universities and Colleges Christian Union Prayer Movement is more than an organization; it is a spiritual lineage dedicated to keeping the fire of the altar burning.
+        </p>
+    </div>
+</header>
+
+<main>
+    <section class="section-padding">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <h6 class="fw-bold text-uppercase mb-3" style="color: var(--ucpm-accent);">The Genesis</h6>
+                    <h2 class="display-5 mb-4">From a Dorm Room to a National Force</h2>
+                    <p>The UCPM story began in the late 2010s, amidst a season of great spiritual transition in our higher learning institutions. A small group of Christian Union leaders noticed a growing gap between academic excellence and spiritual fervor.</p>
+                    <p>What started as a <strong>Wednesday Night Watch</strong> in a cramped hostel room soon became a regional cry. The burden was simple: <em>"Lord, do not let our campuses become graveyards of faith, but nurseries of revival."</em></p>
+                    <p>By 2020, even amidst global shifts, the movement formalized its structure, creating a bridge between various denominations and institutions. Today, we stand as the primary intercessory covering for over 50 campus chapters nationwide.</p>
+                    <div class="mt-4 p-4 bg-light rounded-4 border-start border-4 border-warning">
+                        <p class="mb-0 fst-italic fw-semibold">"UCPM was not built by men’s hands, but by the knees of students who refused to let their institutions go to the enemy."</p>
+                        <footer class="blockquote-footer mt-2">Founding National Chairperson</footer>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="p-4 bg-white rounded-4 shadow-sm border border-opacity-10">
+                        <h4 class="mb-4 text-navy">Milestones of Grace</h4>
+                        <div class="vstack gap-4">
+                            {% for milestone in milestones %}
+                            <div class="d-flex align-items-start gap-3">
+                                <div class="bg-navy text-white fw-bold px-3 py-2 rounded-3 small">{{ milestone.year }}</div>
+                                <div>
+                                    <h5 class="fw-bold text-navy mb-1">{{ milestone.title }}</h5>
+                                    <p class="small text-muted mb-0">{{ milestone.description }}</p>
+                                </div>
+                            </div>
+                            {% empty %}
+                            <div class="d-flex align-items-start gap-3">
+                                <div class="bg-navy text-white fw-bold px-3 py-2 rounded-3 small">2018</div>
+                                <div>
+                                    <h5 class="fw-bold text-navy mb-1">The Seed</h5>
+                                    <p class="small text-muted mb-0">The first inter-university prayer marathon held with 120 students.</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <div class="bg-navy text-white fw-bold px-3 py-2 rounded-3 small">2021</div>
+                                <div>
+                                    <h5 class="fw-bold text-navy mb-1">Formalization</h5>
+                                    <p class="small text-muted mb-0">Establishment of the National Secretariat and the 12-Region Structure.</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <div class="bg-navy text-white fw-bold px-3 py-2 rounded-3 small">2023</div>
+                                <div>
+                                    <h5 class="fw-bold text-navy mb-1">Global Outreach</h5>
+                                    <p class="small text-muted mb-0">Partnership with international student fellowships for cross-border intercession.</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <div class="bg-navy text-white fw-bold px-3 py-2 rounded-3 small">2026</div>
+                                <div>
+                                    <h5 class="fw-bold text-navy mb-1">The Digital Altar</h5>
+                                    <p class="small text-muted mb-0">Launching resources and platforms reaching 10,000+ students.</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- National Leadership Section -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h6 class="text-uppercase fw-bold text-warning ls-2">National Oversight</h6>
+                <h2 class="display-6">Meet Our Leadership</h2>
+                <p class="text-muted">Servant leaders guiding the vision, spiritual direction, and administration of UCPM.</p>
+            </div>
+            <div class="row g-4 justify-content-center">
+                {% for leader in leaders %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+                        <div class="bg-navy text-white text-center py-5">
+                            {% if leader.image %}
+                                <img src="{{ leader.image.url }}" alt="{{ leader.name }}" class="rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
+                            {% else %}
+                                <i class="fas fa-user-circle fa-5x text-warning opacity-75"></i>
+                            {% endif %}
+                        </div>
+                        <div class="card-body p-4 text-center">
+                            <h4 class="fw-bold mb-1">{{ leader.name }}</h4>
+                            <!-- FIXED: Changed leader.role to leader.position to match your model -->
+                            <p class="text-muted small text-uppercase fw-bold mb-3">{{ leader.position }}</p>
+                            <p class="small text-muted">{{ leader.bio }}</p>
+                            <div class="d-flex justify-content-center gap-2 mt-3">
+                                {% if leader.linkedin_url %}
+                                    <a href="{{ leader.linkedin_url }}" target="_blank" class="btn btn-outline-dark btn-sm rounded-circle"><i class="fab fa-linkedin-in"></i></a>
+                                {% endif %}
+                                {% if leader.email %}
+                                    <a href="mailto:{{ leader.email }}" class="btn btn-outline-dark btn-sm rounded-circle"><i class="fas fa-envelope"></i></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center">
+                    <p class="text-muted">Leadership details update coming soon.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-6">The Pillars of Our Character</h2>
+                <p class="text-muted">These are the non-negotiable values that define every UCPM member.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon"><i class="fas fa-fire-alt"></i></div>
+                        <h4>Spiritual Fervor</h4>
+                        <p class="small">We maintain a high temperature of prayer. We believe that spiritual lukewarmness is the greatest threat to a student's destiny.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon"><i class="fas fa-chess-king"></i></div>
+                        <h4>Biblical Integrity</h4>
+                        <p class="small">Our leadership is rooted in the Word. We train students to be incorruptible leaders who honor God in their exams and offices.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon"><i class="fas fa-users"></i></div>
+                        <h4>Kingdom Unity</h4>
+                        <p class="small">We celebrate diversity but demand unity. UCPM is a neutral ground where all denominations pray under one name: Jesus Christ.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <h4>Academic Excellence</h4>
+                        <p class="small">Daniel was 10 times better. We believe a praying student must also be a studying student to represent the Kingdom in the marketplace.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                        <h4>Servant Leadership</h4>
+                        <p class="small">Positions in UCPM are for service, not status. We follow the example of Christ who washed the feet of His disciples.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon"><i class="fas fa-globe-africa"></i></div>
+                        <h4>National Burden</h4>
+                        <p class="small">Our prayers are not selfish. We intercede for the government, the economy, and the peace of our nation daily.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-navy text-white">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-4">
+                    <h2 class="text-white mb-4">Our Theological Foundation</h2>
+                    <p class="opacity-75">We stand on the historic Christian faith, emphasizing the power of the Holy Spirit in the academic environment.</p>
+                    <a href="{% url 'resources' %}" class="btn btn-outline-warning rounded-pill px-4 mt-3">Download Full Constitution</a>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="p-4 border border-white border-opacity-10 rounded-4 h-100">
+                                <h5 class="text-gold fw-bold">The Holy Scriptures</h5>
+                                <p class="small opacity-75 mb-0">We believe the Bible is the inspired, only infallible, authoritative Word of God, our final rule for faith and life.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-4 border border-white border-opacity-10 rounded-4 h-100">
+                                <h5 class="text-gold fw-bold">The Triune God</h5>
+                                <p class="small opacity-75 mb-0">We believe in one God, eternally existent in three persons: Father, Son, and Holy Spirit.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-4 border border-white border-opacity-10 rounded-4 h-100">
+                                <h5 class="text-gold fw-bold">The Great Commission</h5>
+                                <p class="small opacity-75 mb-0">We believe in the spiritual unity of believers and the mandate to make disciples of all nations, starting with our campuses.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-4 border border-white border-opacity-10 rounded-4 h-100">
+                                <h5 class="text-gold fw-bold">The Power of Prayer</h5>
+                                <p class="small opacity-75 mb-0">We believe that fervent, effectual prayer changes circumstances and aligns the earth with the will of Heaven.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-6">Our Governance Framework</h2>
+                <p class="text-muted">Built for accountability, transparency, and spiritual order.</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="org-box" style="background: var(--ucpm-gold); color: var(--ucpm-navy); font-weight: 800;">
+                        NATIONAL ADVISORY COUNCIL (Patrons & Fathers)
+                    </div>
+                    <div class="text-center my-3"><i class="fas fa-arrow-down opacity-50"></i></div>
+                    <div class="org-box">NATIONAL EXECUTIVE COUNCIL (NEC)</div>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="text-center my-2"><i class="fas fa-arrow-down opacity-50"></i></div>
+                            <div class="org-box small bg-secondary">Western Region Hub</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center my-2"><i class="fas fa-arrow-down opacity-50"></i></div>
+                            <div class="org-box small bg-secondary">Central Region Hub</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center my-2"><i class="fas fa-arrow-down opacity-50"></i></div>
+                            <div class="org-box small bg-secondary">Nairobi/Coast Hub</div>
+                        </div>
+                    </div>
+                    <div class="text-center my-3"><i class="fas fa-arrow-down opacity-50"></i></div>
+                    <div class="org-box" style="background: white; color: var(--ucpm-navy); border: 2px dashed #cbd5e1;">
+                        CAMPUS CHAPTERS (Christian Union Prayer Boards)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-5">
+                    <h2 class="display-6 mb-4">Vision 2030 Roadmap</h2>
+                    <p>We are not just praying for today; we are building for the next decade. Our strategic plan ensures that the movement remains relevant and impactful.</p>
+                    <ul class="list-unstyled mt-4">
+                        <li class="mb-4 d-flex align-items-start gap-3">
+                            <div class="bg-warning text-dark fw-bold rounded px-2 py-1 small">PHASE 1</div>
+                            <div>
+                                <h6 class="fw-bold mb-1">Total Coverage (2026-2027)</h6>
+                                <p class="small text-muted mb-0">Ensuring every registered TVET, College, and University in the nation has a UCPM prayer altar.</p>
+                            </div>
+                        </li>
+                        <li class="mb-4 d-flex align-items-start gap-3">
+                            <div class="bg-warning text-dark fw-bold rounded px-2 py-1 small">PHASE 2</div>
+                            <div>
+                                <h6 class="fw-bold mb-1">Institutional Leadership (2028-2029)</h6>
+                                <p class="small text-muted mb-0">Placing UCPM-trained leaders in at least 60% of student governing bodies nationwide.</p>
+                            </div>
+                        </li>
+                        <li class="mb-4 d-flex align-items-start gap-3">
+                            <div class="bg-warning text-dark fw-bold rounded px-2 py-1 small">PHASE 3</div>
+                            <div>
+                                <h6 class="fw-bold mb-1">Global Student Altar (2030)</h6>
+                                <p class="small text-muted mb-0">Connecting with student prayer movements across 50 countries for a global campus watch.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-7">
+                    <div class="bg-white p-5 rounded-5 shadow-sm border border-warning border-opacity-10">
+                        <h4 class="mb-4">Partner with the Vision</h4>
+                        <p class="small text-muted mb-4">To achieve these goals, we require partners who believe in the potential of the youth. You can support through mentorship, financial partnership, or by hosting a regional rally.</p>
+                        
+                        <form method="POST" action="" class="row g-3">
+                            {% csrf_token %}
+                            {{ partner_form.non_field_errors }}
+                            
+                            <div class="col-md-6">
+                                {{ partner_form.full_name }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ partner_form.email }}
+                            </div>
+                            <div class="col-12">
+                                {{ partner_form.interest_type }}
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-navy w-100 py-3 fw-bold text-white">Submit Interest</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

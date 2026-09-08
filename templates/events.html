@@ -1,0 +1,357 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Upcoming Events & Rallies | UCPM National Portal{% endblock %}
+
+{% block extra_css %}
+    <!-- Page Specific Custom Styles -->
+    <style>
+        :root {
+            --ucpm-navy: #0a192f;
+            --ucpm-navy-light: #112240;
+            --ucpm-gold: #f1c40f;
+            --ucpm-accent: #b21f1f;
+            --text-main: #334155;
+            --bg-light: #f8fafc;
+        }
+
+        body { font-family: 'Inter', sans-serif; color: var(--text-main); line-height: 1.8; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--ucpm-navy); font-weight: 700; }
+
+        /* Navigation Active State */
+        .nav-link.active-page { color: var(--ucpm-gold) !important; border-bottom: 2px solid var(--ucpm-gold); }
+        .hover-gold:hover { color: var(--ucpm-gold) !important; padding-left: 5px; transition: 0.3s; }
+
+        /* Events Hero */
+        .events-hero {
+            background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.85)), 
+                        url('https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 60px;
+            color: white;
+        }
+
+        /* Countdown Timer Component */
+        .countdown-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .timer-unit { text-align: center; padding: 10px; }
+        .timer-unit span { display: block; font-size: 2.5rem; font-weight: 800; color: var(--ucpm-gold); line-height: 1; }
+        .timer-unit label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.8; }
+
+        /* Event Cards */
+        .event-card {
+            border: none;
+            border-radius: 25px;
+            background: white;
+            transition: 0.4s;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.05);
+            height: 100%;
+            border: 1px solid #f1f5f9;
+            position: relative;
+        }
+        .event-card:hover { transform: translateY(-15px); box-shadow: 0 30px 60px rgba(10, 25, 47, 0.1); }
+        .event-date-badge {
+            position: absolute; top: 20px; left: 20px;
+            background: var(--ucpm-gold); color: var(--ucpm-navy);
+            padding: 10px 15px; border-radius: 12px; text-align: center;
+            font-weight: 800; line-height: 1; z-index: 5;
+        }
+        .event-img-wrapper { height: 220px; position: relative; overflow: hidden; background: #e2e8f0; }
+        .event-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .event-card:hover .event-img-wrapper img { scale: 1.1; }
+
+        /* Filters */
+        .filter-btn {
+            border-radius: 50px; padding: 10px 25px; border: 1px solid #e2e8f0;
+            background: white; color: var(--ucpm-navy); font-weight: 600;
+            transition: 0.3s; margin-right: 10px; margin-bottom: 10px; cursor: pointer;
+        }
+        .filter-btn.active, .filter-btn:hover { background: var(--ucpm-navy); color: white; border-color: var(--ucpm-navy); }
+
+        /* Section Spacing */
+        .section-padding { padding: 100px 0; }
+        .bg-navy { background-color: var(--ucpm-navy); color: white; }
+
+        /* Registration Form Area */
+        .reg-box {
+            background: white; border-radius: 30px; padding: 50px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.1); margin-top: -80px;
+            position: relative; z-index: 10;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<header class="events-hero">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <span class="badge bg-warning text-dark mb-3 px-3 py-2 fw-bold">
+                    {% if next_event %}ANNUAL FLAGSHIP EVENT{% else %}UPCOMING EVENTS{% endif %}
+                </span>
+                <h1 class="display-3 text-white mb-4">
+                    {% if next_event %}
+                        {{ next_event.title }}
+                    {% else %}
+                        National Inter-University <span class="text-gold">Prayer Gatherings</span>
+                    {% endif %}
+                </h1>
+                <p class="lead opacity-75 mb-4">
+                    {% if next_event %}
+                        {{ next_event.description|truncatechars:130 }}
+                    {% else %}
+                        Join delegates from across the republic as we gather to raise a national altar of transformation.
+                    {% endif %}
+                </p>
+                <div class="d-flex gap-4 mb-4 flex-wrap">
+                    <div class="d-flex align-items-center gap-2"><i class="fas fa-calendar text-gold"></i> <span>{% if next_event %}{{ next_event.date|date:"F j, Y" }}{% else %}Coming Soon{% endif %}</span></div>
+                    <div class="d-flex align-items-center gap-2"><i class="fas fa-map-marker-alt text-gold"></i> <span>{% if next_event and next_event.region %}{{ next_event.region.name }}{% else %}National Portal{% endif %}</span></div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="countdown-container">
+                    <h5 class="text-center text-white mb-4 text-uppercase ls-2">
+                        {% if next_event %}Countdown to {{ next_event.title }}{% else %}Countdown to Next Event{% endif %}
+                    </h5>
+                    
+                    {% if next_event %}
+                        <div class="d-flex justify-content-between" id="countdown-timer" data-date="{{ next_event.date|date:'c' }}">
+                            <div class="timer-unit"><span id="days">00</span><label>Days</label></div>
+                            <div class="timer-unit"><span id="hours">00</span><label>Hours</label></div>
+                            <div class="timer-unit"><span id="minutes">00</span><label>Mins</label></div>
+                            <div class="timer-unit"><span id="seconds">00</span><label>Secs</label></div>
+                        </div>
+                        <a href="{% if next_event.registration_link %}{{ next_event.registration_link }}{% else %}{% url 'join' %}{% endif %}" class="btn btn-warning w-100 mt-4 fw-bold py-3 text-decoration-none text-dark">Book Your Slot Now</a>
+                    {% else %}
+                        <div class="text-center text-white py-3" id="countdown-timer">
+                            <p class="mb-0 text-white fs-5">No upcoming flagship events scheduled right now.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="d-md-flex align-items-end justify-content-between mb-5">
+            <div>
+                <h6 class="text-accent fw-bold text-uppercase mb-2" style="color: var(--ucpm-accent);">Calendar of Events</h6>
+                <h2 class="display-6">Upcoming Regional Rallies</h2>
+            </div>
+            <div class="mt-4 mt-md-0" id="event-filters">
+                <button class="filter-btn active" data-filter="all">All Events</button>
+                {% for region in regions %}
+                    <button class="filter-btn" data-filter="{{ region.name }}">{{ region.name }}</button>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row g-4" id="events-grid">
+            {% for event in events %}
+            <div class="col-lg-4 col-md-6 event-item" data-category="{% if event.region %}{{ event.region.name }}{% else %}General{% endif %}">
+                <div class="event-card">
+                    <div class="event-date-badge">
+                        {{ event.date|date:"d" }}<br><small>{{ event.date|date:"M"|upper }}</small>
+                    </div>
+                    <div class="event-img-wrapper">
+                        {% if event.image %}
+                            <img src="{{ event.image.url }}" alt="{{ event.title }}">
+                        {% else %}
+                            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80" alt="{{ event.title }}">
+                        {% endif %}
+                    </div>
+                    <div class="p-4">
+                        <span class="text-warning small fw-bold text-uppercase">{% if event.region %}{{ event.region.name }}{% else %}National{% endif %}</span>
+                        <h4 class="my-3">{{ event.title }}</h4>
+                        <p class="small text-muted mb-4">{{ event.description|truncatechars:110 }}</p>
+                        <div class="d-flex justify-content-between align-items-center border-top pt-3">
+                            <span class="small"><i class="fas fa-clock me-2"></i> {{ event.date|date:"g:i A" }}</span>
+                            {% if event.registration_link %}
+                                <a href="{{ event.registration_link }}" target="_blank" class="text-navy fw-bold text-decoration-none">Register <i class="fas fa-chevron-right ms-1"></i></a>
+                            {% else %}
+                                <a href="{% url 'event_detail' event.id %}" class="text-navy fw-bold text-decoration-none">Details <i class="fas fa-chevron-right ms-1"></i></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <p class="text-muted fs-5">No upcoming events scheduled at the moment. Check back soon!</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Past Gatherings Dynamic Section -->
+<section class="section-padding bg-light">
+    <div class="container">
+        <h2 class="mb-4">Past Gatherings</h2>
+        <div class="row g-4">
+            {% for event in past_events %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card border-0 shadow-sm h-100">
+                    {% if event.image %}
+                    <img src="{{ event.image.url }}" alt="{{ event.title }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                    {% endif %}
+                    <div class="card-body">
+                        <small class="text-muted">{{ event.date|date:"F d, Y" }}</small>
+                        <h4 class="h5 fw-bold mt-2">{{ event.title }}</h4>
+                        <p class="small text-muted">{{ event.highlight_summary|default:event.description|truncatewords:20 }}</p>
+                        {% if event.resource_file %}
+                        <a href="{{ event.resource_file.url }}" class="btn btn-outline-dark btn-sm mt-2">Download Notes</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-muted">No archived events available yet.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section-padding position-relative">
+    <div class="bg-navy position-absolute top-0 start-0 w-100 h-50"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="reg-box">
+                    <div class="row g-5">
+                        <div class="col-lg-5 border-end">
+                            <h2 class="mb-4">Secure Your Chapter's Spot</h2>
+                            <p class="text-muted small mb-4">Attending a UCPM rally requires prior registration for logistics, security, and material preparation. Please fill in the details of your institution's delegation.</p>
+                            <ul class="list-unstyled small">
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Group transport coordination</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Delegate ID cards & Materials</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Accommodation allocation (Summits only)</li>
+                            </ul>
+                            <div class="mt-5">
+                                <h6 class="fw-bold">Registration Fee Inquiries:</h6>
+                                <p class="text-gold fw-bold">treasury@ucpm-movement.org</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <!-- Django Messages Alert Area -->
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-success{% endif %} alert-dismissible fade show" role="alert">
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+                            <form class="row g-4" method="POST" action="">
+                                {% csrf_token %}
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">Full Name of Contact</label>
+                                    <input type="text" name="full_name" class="form-control form-control-lg border-light bg-light" placeholder="e.g. John Doe" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">Select Event</label>
+                                    <select name="event_title" class="form-select form-select-lg border-light bg-light">
+                                        {% for event in events %}
+                                            <option value="{{ event.title }}">{{ event.title }}</option>
+                                        {% empty %}
+                                            <option value="National Summit">National Summit</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold">Institution Name</label>
+                                    <input type="text" name="institution_name" class="form-control form-control-lg border-light bg-light" placeholder="e.g. University of Nairobi" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">Delegation Size</label>
+                                    <input type="number" name="delegation_size" class="form-control form-control-lg border-light bg-light" placeholder="Number of Students" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">Phone Number</label>
+                                    <input type="tel" name="phone_number" class="form-control form-control-lg border-light bg-light" placeholder="+254..." required>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn w-100 py-3 fw-bold mt-2 text-white" style="background: var(--ucpm-navy);">Submit Registration Request</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // 1. Client-side filtering for events by category/region
+    const filterButtons = document.querySelectorAll('#event-filters .filter-btn');
+    const eventItems = document.querySelectorAll('.event-item');
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const filter = btn.getAttribute('data-filter');
+            
+            eventItems.forEach(item => {
+                if (filter === 'all' || item.getAttribute('data-category').toLowerCase() === filter.toLowerCase()) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // 2. Dynamic Countdown Timer Logic
+    const timerElement = document.getElementById('countdown-timer');
+    if (timerElement && timerElement.hasAttribute('data-date')) {
+        const eventDateString = timerElement.getAttribute('data-date');
+        const eventTime = new Date(eventDateString).getTime();
+
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = eventTime - now;
+
+            if (distance < 0) {
+                document.getElementById('countdown-timer').innerHTML = "<h4 class='text-white text-center w-100 py-3'>The Event Has Started!</h4>";
+                clearInterval(countdownInterval);
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.importNode ? document.getElementById('minutes') : null; // safe check fallback
+            const secondsEl = document.getElementById('seconds');
+
+            if (daysEl) daysEl.innerText = String(days).padStart(2, '0');
+            if (hoursEl) hoursEl.innerText = String(hours).padStart(2, '0');
+            if (document.getElementById('minutes')) document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            if (secondsEl) secondsEl.innerText = String(seconds).padStart(2, '0');
+        };
+
+        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1000);
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ event.title }} | UCPM National Portal{% endblock %}
+
+{% block extra_css %}
+    <style>
+        :root {
+            --ucpm-navy: #0a192f;
+            --ucpm-navy-light: #112240;
+            --ucpm-gold: #f1c40f;
+            --ucpm-accent: #b21f1f;
+            --text-main: #334155;
+            --bg-light: #f8fafc;
+        }
+
+        body { font-family: 'Inter', sans-serif; color: var(--text-main); line-height: 1.8; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--ucpm-navy); font-weight: 700; }
+
+        .event-detail-hero {
+            background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.85)), 
+                        url('{% if event.image %}{{ event.image.url }}{% else %}https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1920&q=80{% endif %}');
+            background-size: cover;
+            background-position: center;
+            padding: 140px 0 80px;
+            color: white;
+        }
+
+        .section-padding { padding: 80px 0; }
+        .card-custom { border-radius: 20px; border: 1px solid #f1f5f9; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    </style>
+{% endblock %}
+
+{% block content %}
+<header class="event-detail-hero">
+    <div class="container">
+        <span class="badge bg-warning text-dark mb-3 px-3 py-2 fw-bold">
+            {% if event.region %}{{ event.region.name }}{% else %}National Event{% endif %}
+        </span>
+        <h1 class="display-3 text-white mb-3">{{ event.title }}</h1>
+        <div class="d-flex gap-4 text-white opacity-75 flex-wrap">
+            <div><i class="fas fa-calendar text-gold me-2"></i> {{ event.date|date:"F j, Y" }}</div>
+            <div><i class="fas fa-clock text-gold me-2"></i> {{ event.date|date:"g:i A" }}</div>
+            <div><i class="fas fa-map-marker-alt text-gold me-2"></i> {{ event.location }}</div>
+        </div>
+    </div>
+</header>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-8">
+                <div class="card-custom p-4 p-md-5 mb-4">
+                    <h3 class="mb-4">About This Gathering</h3>
+                    <p class="lead text-muted">{{ event.description }}</p>
+                </div>
+
+                {% if event.highlight_summary %}
+                <div class="card-custom p-4 p-md-5">
+                    <h3 class="mb-3">Event Highlights</h3>
+                    <p class="text-muted">{{ event.highlight_summary }}</p>
+                    {% if event.resource_file %}
+                    <div class="mt-4">
+                        <a href="{{ event.resource_file.url }}" class="btn btn-outline-dark fw-bold px-4 py-2">Download Notes Document</a>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card-custom p-4 bg-white sticky-top" style="top: 30px;">
+                    <h4 class="mb-4">Event Logistics</h4>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-3 border-bottom pb-2"><strong>Region:</strong> {% if event.region %}{{ event.region.name }}{% else %}National{% endif %}</li>
+                        <li class="mb-3 border-bottom pb-2"><strong>Venue:</strong> {{ event.location }}</li>
+                        <li class="mb-3 border-bottom pb-2"><strong>Date:</strong> {{ event.date|date:"M j, Y" }}</li>
+                    </ul>
+                    
+                    {% if event.registration_link %}
+                        <a href="{{ event.registration_link }}" target="_blank" class="btn btn-warning w-100 fw-bold py-3 text-dark">Book Your Slot Now</a>
+                    {% else %}
+                        <a href="{% url 'events' %}" class="btn btn-warning w-100 fw-bold py-3 text-dark">Book Your Slot Now</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

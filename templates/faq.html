@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}FAQs | UCPM National Communication Hub{% endblock %}
+
+{% block content %}
+<header class="contact-hero py-5" style="background: var(--ucpm-navy);">
+    <div class="container text-center text-white py-4">
+        <h6 class="text-warning text-uppercase ls-2 mb-3 fw-bold">Support & Answers</h6>
+        <h1 class="display-3 text-white">Frequently Asked Questions</h1>
+        <p class="lead opacity-75 mx-auto mt-3" style="max-width: 700px;">
+            Find quick answers regarding operations, chapter registration, and movement guidelines.
+        </p>
+    </div>
+</header>
+
+<section class="section-padding py-5">
+    <div class="container py-4" style="max-width: 900px;">
+        <div class="accordion" id="faqAccordion">
+            {% for faq in faqs %}
+            <div class="accordion-item border-0 mb-3 shadow-sm rounded-4 overflow-hidden">
+                <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                    <button class="accordion-button {% if not forloop.first %}collapsed{% endif %} fw-bold py-3 px-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="collapse{{ forloop.counter }}" style="background-color: #f8fafc; color: var(--ucpm-navy);">
+                        {{ faq.question }}
+                    </button>
+                </h2>
+                <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body px-4 py-3 text-muted bg-white">
+                        {{ faq.answer }}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="text-center py-5">
+                <p class="text-muted">No frequently asked questions are available right now.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

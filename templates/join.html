@@ -1,0 +1,272 @@
+{% extends 'base.html' %}
+
+{% block title %}Join UCPM | Responsive Membership Portal{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --ucpm-navy: #0a192f;
+        --ucpm-gold: #f1c40f;
+        --bg-light: #f8fafc;
+    }
+
+    body { 
+        background-color: var(--bg-light);
+        color: #334155;
+    }
+
+    /* Responsive Hero */
+    .hero-section {
+        background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)), 
+                    url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1200&q=80');
+        background-size: cover;
+        background-position: center;
+        padding: 80px 0 100px;
+        color: white;
+        text-align: center;
+    }
+
+    @media (min-width: 992px) {
+        .hero-section { padding: 120px 0 140px; }
+    }
+
+    /* Card Adjustments */
+    .registration-card {
+        background: white;
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        margin-top: -60px; 
+        border: 1px solid #e2e8f0;
+        position: relative;
+        z-index: 10;
+    }
+
+    @media (min-width: 768px) {
+        .registration-card { padding: 40px; }
+    }
+
+    /* Responsive Navigation Pills */
+    .nav-pills .nav-link {
+        border: 2px solid var(--ucpm-navy);
+        color: var(--ucpm-navy);
+        margin-bottom: 10px;
+        font-weight: 700;
+        border-radius: 10px;
+    }
+
+    @media (min-width: 576px) {
+        .nav-pills { display: flex; justify-content: center; }
+        .nav-pills .nav-link { margin: 0 10px; border-radius: 50px; }
+    }
+
+    .nav-pills .nav-link.active {
+        background-color: var(--ucpm-navy);
+        color: var(--ucpm-gold) !important;
+    }
+
+    /* Icon Boxes */
+    .benefit-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 25px;
+    }
+    .icon-square {
+        min-width: 48px;
+        height: 48px;
+        background: var(--ucpm-navy);
+        color: var(--ucpm-gold);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+    }
+
+    /* Custom Form Controls */
+    .form-control, .form-select {
+        height: 55px;
+        border: 1px solid #e2e8f0;
+        font-size: 16px;
+    }
+
+    .btn-register {
+        height: 55px;
+        background: var(--ucpm-navy);
+        color: white;
+        font-weight: 700;
+        letter-spacing: 1px;
+        transition: 0.3s;
+    }
+    .btn-register:hover { background: #112240; color: var(--ucpm-gold); }
+</style>
+{% endblock %}
+
+{% block content %}
+<header class="hero-section">
+    <div class="container px-4">
+        <h1 class="display-5 fw-bold mb-3 text-white">Membership Portal</h1>
+        <p class="lead opacity-75 mx-auto text-white" style="max-width: 600px;">Join the national network of students committed to prayer, integrity, and academic excellence.</p>
+    </div>
+</header>
+
+<main class="container-xl mb-5">
+    <div class="row g-4 justify-content-center">
+        
+        <div class="col-lg-5 order-2 order-lg-1 mt-5 mt-lg-0">
+            <div class="pe-lg-4">
+                <h2 class="h3 fw-bold mb-4">Member Benefits</h2>
+                
+                <div class="benefit-item">
+                    <div class="icon-square"><i class="fas fa-certificate"></i></div>
+                    <div>
+                        <h6 class="fw-bold mb-1">Official Certification</h6>
+                        <p class="small text-muted">Get recognized as a national member with a downloadable certificate for your CV.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="icon-square"><i class="fas fa-bolt"></i></div>
+                    <div>
+                        <h6 class="fw-bold mb-1">Exclusive Resources</h6>
+                        <p class="small text-muted">Access the 'Altar Protocol' digital guides and strategic prayer manuals.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="icon-square"><i class="fas fa-users-rays"></i></div>
+                    <div>
+                        <h6 class="fw-bold mb-1">Regional Mentorship</h6>
+                        <p class="small text-muted">Get paired with alumni mentors in your field of study for career guidance.</p>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-4 mt-4" style="background: rgba(10, 25, 47, 0.03); border: 1px dashed var(--ucpm-navy);">
+                    <p class="small fw-bold mb-2">Need Help Registering?</p>
+                    <p class="small text-muted mb-0"><i class="fas fa-envelope me-2"></i> registry@ucpm-movement.org</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-7 order-1 order-lg-2">
+            <div class="registration-card">
+                
+                <!-- Feedback Alerts -->
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show mb-4" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <ul class="nav nav-pills mb-4" id="regTab" role="tablist">
+                    <li class="nav-item flex-fill" role="presentation">
+                        <button class="nav-link w-100 active" id="student-tab" data-bs-toggle="pill" data-bs-target="#student-form" type="button">Student Member</button>
+                    </li>
+                    <li class="nav-item flex-fill" role="presentation">
+                        <button class="nav-link w-100" id="chapter-tab" data-bs-toggle="pill" data-bs-target="#chapter-form" type="button">Chapter Leader</button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="regTabContent">
+                    <!-- Student Member Form -->
+                    <div class="tab-pane fade show active" id="student-form" role="tabpanel">
+                        <form method="POST" class="row g-3">
+                            {% csrf_token %}
+                            <div class="col-12">
+                                <label class="form-label fw-bold">Full Name (As per ID/Passport)</label>
+                                {{ student_form.full_name }}
+                                {{ student_form.full_name.errors }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Institution</label>
+                                {{ student_form.institution }}
+                                {{ student_form.institution.errors }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Admission/Reg No.</label>
+                                {{ student_form.admission_number }}
+                                {{ student_form.admission_number.errors }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">WhatsApp Number</label>
+                                {{ student_form.whatsapp_number }}
+                                {{ student_form.whatsapp_number.errors }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Personal Email</label>
+                                {{ student_form.email }}
+                                {{ student_form.email.errors }}
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button type="submit" name="register_student" class="btn btn-register w-100 rounded-pill shadow-sm">REGISTER AS MEMBER</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Chapter Leader Form -->
+                    <div class="tab-pane fade" id="chapter-form" role="tabpanel">
+                        <form method="POST" class="row g-3">
+                            {% csrf_token %}
+                            <div class="col-12">
+                                <label class="form-label fw-bold">Campus/Chapter Name</label>
+                                {{ chapter_form.chapter_name }}
+                                {{ chapter_form.chapter_name.errors }}
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label fw-bold">Chapter Chairperson Full Name</label>
+                                {{ chapter_form.chairperson_name }}
+                                {{ chapter_form.chairperson_name.errors }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Current Member Count</label>
+                                {{ chapter_form.member_count }}
+                                {{ chapter_form.member_count.errors }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Region/Zone</label>
+                                {{ chapter_form.region }}
+                                {{ chapter_form.region.errors }}
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button type="submit" name="register_chapter" class="btn btn-register w-100 rounded-pill shadow-sm">SUBMIT CHAPTER CHARTER</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<section class="bg-white py-5">
+    <div class="container px-4 text-center">
+        <h3 class="fw-bold mb-5">The Registration Journey</h3>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="p-3">
+                    <div class="h2 text-warning fw-bold mb-2">01</div>
+                    <h6 class="fw-bold">Submit Form</h6>
+                    <p class="small text-muted">Complete the digital profile and institution check.</p>
+                </div>
+            </div>
+            <div class="col-md-4 border-start border-end border-sm-0">
+                <div class="p-3">
+                    <div class="h2 text-warning fw-bold mb-2">02</div>
+                    <h6 class="fw-bold">Verification</h6>
+                    <p class="small text-muted">Our Regional Coordinators approve your affiliation.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3">
+                    <div class="h2 text-warning fw-bold mb-2">03</div>
+                    <h6 class="fw-bold">Access Portal</h6>
+                    <p class="small text-muted">Get your member ID and start using resources.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
