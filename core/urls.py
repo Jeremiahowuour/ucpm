@@ -22,6 +22,10 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+admin.site.site_header = " UCPM Admin Login"
+admin.site.site_title = "UCPM Admin Login Portal"
+admin.site.index_title = "Welcome to UCPM Admin Portal"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),  # or whatever your app name/urls are
